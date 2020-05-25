@@ -28,4 +28,16 @@ export class AppComponent {
   get inProgressTodos() {
     return this.todos.filter(todo => !todo.done);
   }
+
+  addTodo(value: string) {
+    this.todos.unshift({
+      id: this.todos.length + 1,
+      description: value,
+      done: false,
+    });
+  }
+
+  removeTodo(todo: Todo) {
+    this.todos = this.todos.filter(t => t !== todo);
+  }
 }

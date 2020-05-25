@@ -1,21 +1,25 @@
-<input placeholder="what needs to be done?" />
+<input
+  #newTodo
+  placeholder="what needs to be done?"
+  (keyup.enter)="addTodo(newTodo.value); newTodo.value = ''"
+/>
 
 <div class="todo-lists">
   <section>
     <h2>In Progress</h2>
     <label *ngFor="let todo of inProgressTodos">
-      <input type="checkbox" />
+      <input type="checkbox" [(ngModel)]="todo.done" />
       {{ todo.description }}
-      <button>x</button>
+      <button (click)="removeTodo(todo)">x</button>
     </label>
   </section>
 
   <section>
     <h2>Done</h2>
     <label class="done" *ngFor="let todo of completedTodos">
-      <input type="checkbox" />
+      <input type="checkbox" [(ngModel)]="todo.done" />
       {{ todo.description }}
-      <button>x</button>
+      <button (click)="removeTodo(todo)">x</button>
     </label>
   </section>
 </div>
